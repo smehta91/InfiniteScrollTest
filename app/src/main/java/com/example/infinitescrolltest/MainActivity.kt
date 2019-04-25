@@ -56,10 +56,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val ELEMENT_COUNT = 100
-        for (i in 1..ELEMENT_COUNT) {
-            linearLayout.addView(Content.getRandomView(linearLayout))
+        refreshButton.setOnClickListener { view ->
+            linearLayout.removeAllViews()
+            for (i in 1..ELEMENT_COUNT) {
+                linearLayout.addView(Content.getRandomView(linearLayout))
 
+            }
         }
+
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
