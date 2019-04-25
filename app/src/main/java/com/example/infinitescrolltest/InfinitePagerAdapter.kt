@@ -62,9 +62,8 @@ object Content {
         R.drawable.sample30
     )
 
-    fun getRandomImage(context: Context): Drawable? {
-        val textItem = imageResource[(Math.random() * imageResource.size).toInt()]
-        return context.getDrawable(textItem)
+    fun getRandomImage(context: Context): Int {
+        return imageResource[(Math.random() * imageResource.size).toInt()]
     }
 
 
