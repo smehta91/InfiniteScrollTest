@@ -2,6 +2,12 @@ package com.shashankk.dragdroptest
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.infinitescrolltest.R
 
 object Content {
@@ -60,4 +66,34 @@ object Content {
         val textItem = imageResource[(Math.random() * imageResource.size).toInt()]
         return context.getDrawable(textItem)
     }
+
+
+    val creators = arrayListOf<(ViewGroup) -> View>(
+        { parent ->
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
+            val imageView = view.findViewById<ImageView>(R.id.image)
+            Glide.with(imageView).load(getRandomImage(parent.context)).into(imageView)
+            view.findViewById<TextView>(R.id.title).text = getRandomText(parent.context)
+            view.findViewById<TextView>(R.id.text).text = getRandomText(parent.context)
+            view
+        },
+        { parent ->
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card2, parent, false)
+            val imageView = view.findViewById<ImageView>(R.id.image)
+            Glide.with(imageView).load(getRandomImage(parent.context)).into(imageView)
+            view.findViewById<TextView>(R.id.text).text = getRandomText(parent.context)
+            view
+        },
+        { parent ->
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card3, parent, false)
+            val imageView = view.findViewById<ImageView>(R.id.image1)
+            val imageView2 = view.findViewById<ImageView>(R.id.image2)
+            Glide.with(imageView).load(getRandomImage(parent.context)).into(imageView)
+            Glide.with(imageView2).load(getRandomImage(parent.context)).into(imageView2)
+            view.findViewById<TextView>(R.id.title).text = getRandomText(parent.context)
+            view.findViewById<TextView>(R.id.text).text = getRandomText(parent.context)
+            view
+        })
+
+    fun getRandomView(parent: ViewGroup) = creators[(Math.random() * (creators.size)).toInt()](parent)
 }

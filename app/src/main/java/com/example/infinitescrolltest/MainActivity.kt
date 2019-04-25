@@ -57,7 +57,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val ELEMENT_COUNT = 100
         for (i in 1..ELEMENT_COUNT) {
-            linearLayout.addView(getViewElement())
+            linearLayout.addView(Content.getRandomView(linearLayout))
+
         }
     }
 
